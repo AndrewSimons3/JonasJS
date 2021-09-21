@@ -8,7 +8,7 @@
 // document.querySelector('.guess').value = 23;
 // console.log(document.querySelector('.guess').value);
 
-document.querySelector('btn').addEventListener('click', () => {
-  
+document.querySelector('.check').addEventListener('click', () => {
+  console.log(document.querySelector('.guess').value);
 });
 
