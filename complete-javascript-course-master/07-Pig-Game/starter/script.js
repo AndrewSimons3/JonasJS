@@ -14,10 +14,10 @@ let scores, currentScore, activePlayer, playing;
 
 const init = function() {
   //Starting conditions
-  const scores = [0, 0];
-  let currentScore = 0;
-  let activePlayer = 0;
-  let playing = true;
+  scores = [0, 0];
+  currentScore = 0;
+  activePlayer = 0;
+  playing = true;
   
   score0El.textContent = 0;
   score1El.textContent = 0;
@@ -89,6 +89,4 @@ btnHold.addEventListener('click', () => {
   }
 });
 
-btnNew.addEventListener('click', () => {
-  init();
-})
+btnNew.addEventListener('click', init);
