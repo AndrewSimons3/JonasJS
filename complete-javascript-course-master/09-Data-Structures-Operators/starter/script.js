@@ -4,7 +4,7 @@
 // const flights =
 //   '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
 const weekdays = ['mon', 'tues', 'wed', 'thur', 'fri', 'sat', 'sun']
-const hours = {
+const openingHours = {
   [weekdays[3]]:{
     open: 12,
     close: 22,
@@ -27,7 +27,7 @@ const restaurant = {
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
   
   //es6 enhanced object literals
-  hours,
+  openingHours,
 
   order(starterIndex, mainIndex) {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]]
@@ -50,6 +50,37 @@ const restaurant = {
 
 
 
+// if (restaurant.openingHours && restaurant.openingHours.mon) console.log
+// (restaurant.openingHours.mon.open)
+
+// console.log(restaurant.hours.mon.open);
+
+//WITH OPTIONAL CHAINING
+console.log(restaurant.openingHours.mon?.open);
+console.log(restaurant.openingHours?.mon?.open);
+
+//example
+const days = ['mon', 'tues', 'wed', 'thur', 'fri', 'sat', 'sun'];
+for(let day of days) {
+  console.log(day);
+  const open = restaurant.openingHours[day]?.open ?? 
+  'closed';
+  console.log(`On ${day}, we open at ${open}`);
+}
+
+//methods
+console.log(restaurant.orderRisotto?.(0,1) ?? 'Method does not exist');
+
+//arrays
+const users = [{name: 'Jonas', email: 'hello@andrew.com'}];
+
+console.log(users[0]?.name ?? 'User array empty');
+
+
+
+
+////////////////////////
+//FOR OF LOOP
 
 // const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
 
