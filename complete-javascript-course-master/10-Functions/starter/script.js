@@ -56,32 +56,96 @@
 // newPassport(andrew);
 // checkIn(flight, andrew);
 
-const oneWord = function(str) {
-  return str.replace(/ /g, '').toLowerCase()
+// const oneWord = function(str) {
+//   return str.replace(/ /g, '').toLowerCase()
+// };
+
+// const upperFirstWord = function(str) {
+//   const [first, ...others]= str.split(' ');
+//   return [first.toUpperCase(), ...others].join(' ');
+// };
+
+// //Higher-order function
+// const transformer = function(str, fn) {
+//   console.log(`Original string: ${str}`)
+//   console.log(`Transformed string: ${fn(str)}`)
+
+//   console.log(`Transformed by: ${fn.name}`)
+// }
+
+// transformer('JavaScript is the best!', upperFirstWord);
+// transformer('JavaScript is the best!', oneWord);
+
+
+// //JS uses callbacks all the time
+// const high5 = function() {
+//   console.log('hey')
+// }
+
+// document.body.addEventListener('click', high5);
+
+// ['Jonas', 'Martha', 'Adam'].forEach(high5)
+
+// const greet = function(greeting) {
+//   return function(name) {
+//     console.log(`${greeting} ${name}`);
+//   }
+// }
+
+//challenge
+// const greetArr = greeting => name => console.log(`${greeting} ${name}`);
+
+// const greeterHey = greetArr('Hey');
+// greeterHey('Andrew');
+// greeterHey('Steven');
+
+// greetArr('Hello')('Jonas');
+
+const lufthansa = {
+  airline: 'Lufthansa',
+  iataCode: 'LH',
+  bookings: [],
+  book(flightNum, name) {
+    console.log(`${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
+    );
+    this.bookings.push({flight: `${this.iataCode}${flightNum}`,name})
+  },
 };
 
-const upperFirstWord = function(str) {
-  const [first, ...others]= str.split(' ');
-  return [first.toUpperCase(), ...others].join(' ');
-};
+lufthansa.book(635, 'Jonas Schmedtmann');
+lufthansa.book(239, 'Andrew Simons');
+console.log(lufthansa)
 
-//Higher-order function
-const transformer = function(str, fn) {
-  console.log(`Original string: ${str}`)
-  console.log(`Transformed string: ${fn(str)}`)
+const eurowings = {
+  airline: 'Eurowings',
+  iataCode: 'EW',
+  bookings: [],
 
-  console.log(`Transformed by: ${fn.name}`)
 }
 
-transformer('JavaScript is the best!', upperFirstWord);
-transformer('JavaScript is the best!', oneWord);
+const book = lufthansa.book;
+
+// Does not work
+// book(23, 'Sarah Williams');
 
 
-//JS uses callbacks all the time
-const high5 = function() {
-  console.log('hey')
+//Call method
+book.call(eurowings, 23, 'Sarah Williams');
+console.log(eurowings);
+
+book.call(lufthansa, 239, 'Mary Cooper');
+console.log(lufthansa);
+
+const swiss = {
+  airline: 'Swiss Air Lines',
+  iataCode: 'LX',
+  bookings: []
 }
 
-document.body.addEventListener('click', high5);
+book.call(swiss, 583, 'Mary Cooper');
+console.log(swiss);
 
-['Jonas', 'Martha', 'Adam'].forEach(high5)
+
+//Apply method
+
+
