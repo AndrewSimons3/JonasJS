@@ -147,5 +147,9 @@ console.log(swiss);
 
 
 //Apply method
+const flightData = [583, 'George Cooper'];
+book.apply(swiss, flightData)
+console.log(swiss);
 
+book.call(swiss, ...flightData);
 
