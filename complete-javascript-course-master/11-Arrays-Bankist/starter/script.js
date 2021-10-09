@@ -233,3 +233,9 @@ GOOD LUCK 😀
 
 // checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3])
 
+
+//////////////////////
+//MAP - returns a NEW ARRAY
+
+
+
