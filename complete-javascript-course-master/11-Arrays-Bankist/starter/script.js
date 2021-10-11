@@ -541,30 +541,57 @@ GOOD LUCK 😀
 //   }
 // }
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300]
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300]
 
 
-// EQUALITY
-console.log(movements.includes(-130));
-console.log(movements);
+// // EQUALITY
+// console.log(movements.includes(-130));
+// console.log(movements);
 
-// SOME: CONDITION
-console.log(movements.some(mov => mov === -130));
+// // SOME: CONDITION
+// console.log(movements.some(mov => mov === -130));
 
-const anyDeposits = movements.some(mov => mov > 1500);
-console.log(anyDeposits);
+// const anyDeposits = movements.some(mov => mov > 1500);
+// console.log(anyDeposits);
 
-// EVERY
-const everyDeposit = movements.every(mov => mov > 0);
-console.log(everyDeposit);
-console.log(account4.movements.every(mov => mov > 0));
+// // EVERY
+// const everyDeposit = movements.every(mov => mov > 0);
+// console.log(everyDeposit);
+// console.log(account4.movements.every(mov => mov > 0));
 
-// Seperate callback
-const deposit = mov => mov > 0;
-console.log(movements.some(deposit));
-console.log(movements.every(deposit));
-console.log(movements.filter(deposit));
+// // Seperate callback
+// const deposit = mov => mov > 0;
+// console.log(movements.some(deposit));
+// console.log(movements.every(deposit));
+// console.log(movements.filter(deposit));
 
+const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
+console.log(arr.flat());
+
+const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
+console.log(arrDeep.flat(2));
+
+// const accountMovements = accounts.map(acc => acc.movements);
+// console.log(accountMovements);
+// const allMovements = accountMovements.flat();
+// console.log(allMovements);
+
+// const overallBalance = allMovements.reduce((acc, mov) => 
+//   acc + mov, 0);
+//   console.log(overallBalance);
+
+const overallBalance = accounts
+  .map(acc => acc.movements)
+  .flat()
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(overallBalance);
+
+
+const overallBalance2 = accounts
+  .flatMap(acc => acc.movements)
+  .flat()
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(overallBalance);
 
 
 
