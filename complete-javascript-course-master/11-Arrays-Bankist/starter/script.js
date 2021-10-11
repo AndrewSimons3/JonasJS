@@ -574,11 +574,11 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300]
 // console.log(movements.every(deposit));
 // console.log(movements.filter(deposit));
 
-const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
-console.log(arr.flat());
+// const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
+// console.log(arr.flat());
 
-const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
-console.log(arrDeep.flat(2));
+// const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
+// console.log(arrDeep.flat(2));
 
 // const accountMovements = accounts.map(acc => acc.movements);
 // console.log(accountMovements);
@@ -613,25 +613,27 @@ console.log(movements);
 // return < 0, A, B (keep order)
 // return > 0, B, A (switch order)
 
-// Ascending
-movements.sort((a, b) => {
-  if (a > b)
-    return 1;
-  if (a < b)
-    return -1;
-});
-console.log(movements);
-// Ascending
-console.log(movements.sort((a, b) => a - b));
+// // Ascending
+// movements.sort((a, b) => {
+//   if (a > b)
+//     return 1;
+//   if (a < b)
+//     return -1;
+// });
+// console.log(movements);
+// // Ascending
+// console.log(movements.sort((a, b) => a - b));
 
-// Descending
-movements.sort((a, b) => {
-  if (a > b) return -1;
-  if (a < b) return 1;
-});
-console.log(movements);
-// Descending
-console.log(movements.sort((a, b) => b - a));
+// // Descending
+// movements.sort((a, b) => {
+//   if (a > b) return -1;
+//   if (a < b) return 1;
+// });
+// console.log(movements);
+// // Descending
+// console.log(movements.sort((a, b) => b - a));
+
+
 
 
 
