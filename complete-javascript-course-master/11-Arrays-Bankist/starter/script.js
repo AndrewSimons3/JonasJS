@@ -550,7 +550,7 @@ GOOD LUCK 😀
 //   }
 // }
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300]
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 
 // // EQUALITY
@@ -602,13 +602,13 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300]
 //   .reduce((acc, mov) => acc + mov, 0);
 // console.log(overallBalance);
 
-//Strings - mutates array
-const owners = ['Jonas', 'Zach', 'Adam', 'Martha'];
-console.log(owners.sort())
-console.log(owners);
+// //Strings - mutates array
+// const owners = ['Jonas', 'Zach', 'Adam', 'Martha'];
+// console.log(owners.sort())
+// console.log(owners);
 
-//Numbers
-console.log(movements);
+// //Numbers
+// console.log(movements);
 
 // return < 0, A, B (keep order)
 // return > 0, B, A (switch order)
@@ -633,9 +633,60 @@ console.log(movements);
 // // Descending
 // console.log(movements.sort((a, b) => b - a));
 
+// const arr = [1, 2, 3, 4, 5, 6, 7];
+// const x = new Array(7);
+// console.log(x);
+// x.map(() => 5);
+// console.log(x);
+
+// x.fill(1);
+// console.log(x);
+
+// x.fill(1, 3, 5);
+// x.fill(1)
+// console.log(x);
+
+// arr.fill(23, 2, 6);
+// console.log(arr);
+
+// //Array.from
+// const y = Array.from({length: 7}, () => 1);
+// console.log(y);
+
+// const z = Array.from({length: 7}, (_,  i) => i + 1);
+// console.log(z);
+
+// const randomDiceRoll = Array.from({length: 100}, (_, i) => Math.floor(Math.random() * 6 + 1));
+// console.log(randomDiceRoll);
 
 
 
+// labelBalance.addEventListener('click', function() {
+//   const movementsUI = Array.from(document.querySelectorAll('.movements__value'));
+//   el => Number(el.textContent.replace('€', ''));
+//   console.log(movementsUI);
+// });
+
+
+//////////////////ARRAY METHOD PRACTICE//////////////////////////
+
+//exercise 1
+const bankDepositSum = accounts
+  .flatMap(acc => acc.movements)
+  .filter(mov => mov > 0)
+  .reduce((sum, cur) => sum + cur, 0)
+console.log(bankDepositSum);
+
+//exercise 2
+// const numDeposits1000 = accounts
+//   .flatMap(acc => acc.movements)
+//   .filter(mov => mov >= 1000).length;
+//   console.log(numDeposits1000);
+
+  const numDeposits1000 = accounts
+  .flatMap(acc => acc.movements)
+  .reduce((count, cur) => cur >= 1000 ? count + 1 : count , 0);
+  console.log(numDeposits1000);
 
 
 
