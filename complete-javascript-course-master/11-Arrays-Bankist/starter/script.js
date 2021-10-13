@@ -753,7 +753,9 @@ GOOD LUCK 😀
 // 5. Log to the console whether there is any dog eating EXACTLY the amount of food that is 
 // recommended (just true or false)
 
-// 6. Log to the console whether there is any dog eating an OKAY amount of food (just true or false)
+// 6. Log to the console whether there is any dog eating an OKAY amount of food (just true or 
+//false)
+
 // 7. Create an array containing the dogs that are eating an OKAY amount of food (try to reuse 
 //   the condition used in 6.)
 
@@ -797,6 +799,49 @@ console.log(dogs);
 const dogSarah = dogs.find(dog => dog.owners.includes('Sarah'))
 console.log(`Sarah's dog is eating ${dogSarah.curFood > dogSarah.recFood ? 'too much' : 'too little'} `)
 
-// 3.
 // 3. Create an array containing all owners of dogs who eat too much ('ownersEatTooMuch') and 
 // an array with all owners of dogs who eat too little ('ownersEatTooLittle').
+// 3.
+
+const ownersEatTooMuch = dogs
+  .filter(dog => dog.curFood > dog.recFood)
+  .flatMap(dog => dog.owners);
+console.log(ownersEatTooMuch)
+
+const ownersEatTooLittle = dogs
+  .filter(dog => dog.curFood < dog.recFood)
+  .flatMap(dog => dog.owners);
+console.log(ownersEatTooLittle);
+
+
+//4. Log a string to the console for each array created in 3., like this: "Matilda and Alice 
+// and Bob's dogs eat too much!" and "Sarah and John and Michael's dogs eat too little!"
+
+console.log(`${ownersEatTooMuch.join(' and ' )}'s dogs eat too much!`);
+console.log(`${ownersEatTooLittle.join(' and ' )}'s dogs eat too little!`);
+
+// 5. Log to the console whether there is any dog eating EXACTLY the amount of food that is 
+// recommended (just true or false)
+const exactFood = dogs.some(dog => dog.curFood === dog.recFood);
+console.log(exactFood);
+
+// 6. Log to the console whether there is any dog eating an OKAY amount of food (just true or 
+//false)
+
+const okayFood = dog => dog.curFood > dog.recFood * .9 && dog.curFood < dog.recFood * 1.1;
+console.log(dogs.some(okayFood));
+// HINT 2: Being within a range 10% above and below the recommended portion means: current > 
+// (recommended * 0.90) && current < (recommended * 1.10). Basically, the current portion should 
+// be between 90% and 110% of the recommended portion.
+
+// 7. Create an array containing the dogs that are eating an OKAY amount of food (try to reuse 
+//   the condition used in 6.)
+console.log(dogs.filter(okayFood));
+
+// 8. Create a shallow copy of the dogs array and sort it by recommended food portion in an 
+// ascending order (keep in mind that the portions are inside the array's objects);
+
+const dogsCopy = dogs
+  .slice()
+  .sort((a, b) => a.recFood - b.recFood);
+console.log(dogsCopy);
