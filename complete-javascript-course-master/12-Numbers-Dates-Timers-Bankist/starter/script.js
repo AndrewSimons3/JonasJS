@@ -349,6 +349,30 @@ btnSort.addEventListener('click', function (e) {
 //   });
 // });
 
+console.log(2 ** 53 - 1);
+
+console.log(543253254543254254n);
+console.log(BigInt(54325435432542543254325432));
+
+// Operations
+console.log(10000n + 10000n)
+console.log(542532543254325432543254235432543254n + 5432543254325432543254325454n);
+
+const huge = 3454325432543254325432543n;
+const num = 23;
+console.log(huge * BigInt(num));
+
+console.log(20n > 15);
+console.log(2n === 20);
+console.log(typeof 20n);
+console.log(20 == 20n);
+
+console.log(huge + ` is REALLY big!!!`);
+
+//Divisions
+console.log(10n / 3n);
+console.log(10 / 3);
+
 
 
 
