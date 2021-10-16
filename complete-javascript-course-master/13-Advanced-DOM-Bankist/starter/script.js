@@ -143,9 +143,9 @@ const handleHover = function(e) {
   }
 }
 
-// // Passing "argument" into handler
-// nav.addEventListener('mouseover', handleHover.bind(0.5));
-// nav.addEventListener('mouseout', handleHover.bind(1));
+// Passing "argument" into handler
+nav.addEventListener('mouseover', handleHover.bind(0.5));
+nav.addEventListener('mouseout', handleHover.bind(1));
 
 
 // // Sticky Navigation
@@ -214,6 +214,10 @@ allSections.forEach((section) => {
   sectionObserver.observe(section);
   section.classList.add('section--hidden');
 });
+
+
+// Lazy Loading Images
+const imgTargets
 
 
 
