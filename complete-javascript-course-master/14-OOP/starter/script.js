@@ -115,70 +115,120 @@ GOOD LUCK 😀
 // const PersonCl = class {}
 
 //declaration
-class PersonCl {
-  constructor(fullName, birthYear) {
-    this.fullName = fullName;
-    this.birthYear = birthYear;
-  }
+// class PersonCl {
+//   constructor(fullName, birthYear) {
+//     this.fullName = fullName;
+//     this.birthYear = birthYear;
+//   }
   
-  // Methods will be added to .prototype property
-  calcAge() {
-    console.log(2037 - this.birthYear);
-  }
+//   // Instance methods
+//   // Methods will be added to .prototype property
+//   calcAge() {
+//     console.log(2037 - this.birthYear);
+//   }
 
-  greet() {
-    console.log(`Hey ${this.firstName}`);
-  }
+//   greet() {
+//     console.log(`Hey ${this.firstName}`);
+//   }
 
-  get age() {
-    return 2037 - this.birthYear;
-  }
+//   get age() {
+//     return 2037 - this.birthYear;
+//   }
 
-  // Set a property that already exists
-  set fullName(name) {
-    console.log(name);
-    if(name.includes('')) this._fullName = name;
-    else alert(`${name} is not a full name!`);
-  }
+//   // Set a property that already exists
+//   set fullName(name) {
+//     console.log(name);
+//     if(name.includes('')) this._fullName = name;
+//     else alert(`${name} is not a full name!`);
+//   }
 
-  get fullName() {
-    return this._fullName;
-  }
-}
+//   get fullName() {
+//     return this._fullName;
+//   }
 
-const jessica = new PersonCl('Jessica Davis', 1996);
-console.log(jessica);
-jessica.calcAge();
-console.log(jessica.age);
+//   // Static method
+//   static hey() {
+//     console.log("Hey there!");
+//     console.log(this);
+//   }
+// }
 
-console.log(jessica.__proto__ === PersonCl.prototype);
+// const jessica = new PersonCl('Jessica Davis', 1996);
+// console.log(jessica);
+// jessica.calcAge();
+// console.log(jessica.age);
+
+// console.log(jessica.__proto__ === PersonCl.prototype);
   
-// PersonCl.prototype.greet = function() {
-//   console.log(`Hey ${this.firstName}`);
+// // PersonCl.prototype.greet = function() {
+// //   console.log(`Hey ${this.firstName}`);
+// // };
+
+// jessica.greet();
+
+// // 1. Classes are NOT hoisted
+// // 2. Classes are first-class citizens
+// // 3. Classes are executed in strict mode
+
+// const walter = new PersonCl('Walter White', 1965);
+
+// PersonCl.hey();
+
+// const account = {
+//   owner: 'jonas',
+//   movements: [200, 530, 120, 300],
+
+//   get latest() {
+//     return this.movements.slice(-1).pop();
+//   },
+
+//   set latest(mov) {
+//     this.movements.push(mov);
+//   }
 // };
 
-jessica.greet();
+// console.log(account.latest);
 
-// 1. Classes are NOT hoisted
-// 2. Classes are first-class citizens
-// 3. Classes are executed in strict mode
+// account.latest = 50;
+// console.log(account.movements);
 
-const walter = new PersonCl('Walter White', 1965);
 
-const account = {
-  owner: 'jonas',
-  movements: [200, 530, 120, 300],
+// const PersonProto = {
+//   calcAge() {
+//     console.log(2037 - this.birthYear);
+//   },
 
-  get latest() {
-    return this.movements.slice(-1).pop();
-  },
+//   init(firstName, birthYear) {
+//     this.firstName = firstName;
+//     this.birthYear = birthYear;
+//   }
+// };
 
-  set latest(mov) {
-    this.movements.push(mov);
-  }
-};
+// const steven = Object.create(PersonProto);
+// console.log(steven);
+// steven.name = 'Steven';
+// steven.birthYear = 2002;
+// steven.calcAge();
 
-console.log(account.latest);
+// console.log(steven.__proto__ === PersonProto);
 
-account.latest = 50;
-console.log(account.movements);
+// const sarah = Object.create(PersonProto);
+// sarah.init('Sarah', '1979');
+// sarah.calcAge();
+
+
+///////////////////////////////////////
+// Coding Challenge #2
+
+/* 
+1. Re-create challenge 1, but this time using an ES6 class;
+2. Add a getter called 'speedUS' which returns the current speed in mi/h (divide by 1.6);
+3. Add a setter called 'speedUS' which sets the current speed in mi/h (but converts it to km/h before storing the value, by multiplying the input by 1.6);
+4. Create a new car and experiment with the accelerate and brake methods, and with the getter and setter.
+
+DATA CAR 1: 'Ford' going at 120 km/h
+
+GOOD LUCK 😀
+*/
+
+
