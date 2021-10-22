@@ -369,61 +369,146 @@ GOOD LUCK 😀
 // const PersonCl = class {}
 
 // declaration
-class PersonCl {
-  constructor(fullName, birthYear) {
-    this.fullName = fullName;
-    this.birthYear = birthYear;
-  }
+// class PersonCl {
+//   constructor(fullName, birthYear) {
+//     this.fullName = fullName;
+//     this.birthYear = birthYear;
+//   }
   
-  // Instance methods
-  // Methods will be added to .prototype property
-  calcAge() {
-    console.log(2037 - this.birthYear);
+//   // Instance methods
+//   // Methods will be added to .prototype property
+//   calcAge() {
+//     console.log(2037 - this.birthYear);
+//   }
+
+//   greet() {
+//     console.log(`Hey ${this.firstName}`);
+//   }
+
+//   get age() {
+//     return 2037 - this.birthYear;
+//   }
+
+//   // Set a property that already exists
+//   set fullName(name) {
+//     console.log(name);
+//     if(name.includes('')) this._fullName = name;
+//     else alert(`${name} is not a full name!`);
+//   }
+
+//   get fullName() {
+//     return this._fullName;
+//   }
+
+//   // Static method
+//   static hey() {
+//     console.log("Hey there!");
+//     console.log(this);
+//   }
+// }
+
+// class StudentCl extends PersonCl {
+//   constructor(fullName, birthYear, course) {
+//     // Always needs to happen first
+//     super(fullName, birthYear)
+//     this.course = course;
+//   }
+
+//   introduce() {
+//     console.log(`My name is ${this.fullName} and I study ${this.course}`)
+//   }
+
+//   calcAge() {
+//     console.log(`I'm ${2037 - this.birthYear} years old, but as a student I feel more like ${2037 - this.birthYear + 10}`)
+//   }
+// }
+
+
+// const martha = new StudentCl('Martha Jones', 2012, 'Computer Science');
+// martha.introduce();
+// martha.calcAge();
+
+
+//////////////////////////////////////
+// Inheritance Between "Classes": Object.create
+
+// const PersonProto = {
+//   calcAge() {
+//     console.log(2037 - this.birthYear);
+//   },
+
+//   init(firstName, birthYear) {
+//     this.firstName = firstName;
+//     this.birthYear = birthYear;
+//   }
+// };
+
+// const steven = Object.create(PersonProto);
+
+// const StudentProto = Object.create(PersonProto);
+// StudentProto.init = function(firstName, birthYear, course) {
+//   PersonProto.init.call(this, firstName, birthYear)
+//     this.course = course;
+//   };
+
+// StudentProto.introduce = function () {
+//   console.log(`My name is ${this.firstName} and I study ${this.course}`)
+// }
+
+// const jay = Object.create(StudentProto);
+// jay.init('Jay', 2010, 'Computer Science');
+
+// jay.introduce();
+// jay.calcAge();
+
+
+class Account {
+  constructor(owner, currency, pin) {
+    this.owner = owner;
+    this.currency = currency;
+    // protected property
+    this._pin = pin;
+    this._movements = [];
+    this.locale = navigator.language;
+
+    console.log(`Thanks for opening an account, ${owner}`)
   }
 
-  greet() {
-    console.log(`Hey ${this.firstName}`);
+  // Public interface
+  getMovements() {
+    return this._movements;
   }
 
-  get age() {
-    return 2037 - this.birthYear;
+  deposit(val) {
+    this._movements.push(val)
   }
 
-  // Set a property that already exists
-  set fullName(name) {
-    console.log(name);
-    if(name.includes('')) this._fullName = name;
-    else alert(`${name} is not a full name!`);
+  withdraw(val) {
+    this.deposit(-val)
   }
 
-  get fullName() {
-    return this._fullName;
+  _approveLoan(val) {
+    return true;
   }
 
-  // Static method
-  static hey() {
-    console.log("Hey there!");
-    console.log(this);
+  requestLoan(val) {
+    if(this._approveLoan(val)) {
+      this.deposit(val);
+      console.log(`Loan approved`)
+    }
   }
 }
 
-class StudentCl extends PersonCl {
-  constructor(fullName, birthYear, course) {
-    // Always needs to happen first
-    super(fullName, birthYear)
-    this.course = course;
-  }
+const acc1 = new Account('Jonas', 'EUR', 1111);
+console.log(acc1);
 
-  introduce() {
-    console.log(`My name is ${this.fullName} and I study ${this.course}`)
-  }
+// acc1._movements.push(250);
+// acc1._movements.push(-140);
+acc1.deposit(250);
+acc1.withdraw(140);
+acc1.requestLoan(1000);
+// acc1.approveLoan(1000);
+console.log(acc1.getMovements());
 
-  calcAge() {
-    console.log(`I'm ${2037 - this.birthYear} years old, but as a student I feel more like ${2037 - this.birthYear + 10}`)
-  }
-}
-
-
-const martha = new StudentCl('Martha Jones', 2012, 'Computer Science');
-martha.introduce();
-martha.calcAge();
+console.log(acc1);
+// console.log(acc1.pin);
