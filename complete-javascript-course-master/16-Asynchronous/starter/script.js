@@ -36,3 +36,4 @@ request.addEventListener('load', function () {
 
 getCountryData('Portugal')
 getCountryData('usa')
+getCountryData('Germany')
