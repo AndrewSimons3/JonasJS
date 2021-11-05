@@ -319,15 +319,12 @@ btn.addEventListener('click', function () {
 // Promise.resolve('abc').then(x => console.log(x));
 // Promise.reject('abc').catch(x => console.log(x));
 
-
-
 // console.log('Getting position')
-
 
 // const getPosition = function() {
 //   return new Promise(function(resolve, reject) {
 //     // navigator.geolocation.getCurrentPosition(
-//     //   position => resolve(position), 
+//     //   position => resolve(position),
 //     //   err => reject(err)
 //     // );
 //     navigator.geolocation.getCurrentPosition(resolve, reject);
@@ -335,7 +332,6 @@ btn.addEventListener('click', function () {
 // };
 
 // getPosition().then(pos => console.log(pos));
-
 
 // const whereAmI = function () {
 //   getPosition()
@@ -364,7 +360,6 @@ btn.addEventListener('click', function () {
 // };
 
 // btn.addEventListener('click', whereAmI);
-
 
 ///////////////////////////////////////
 // Coding Challenge #2
@@ -449,13 +444,51 @@ GOOD LUCK 😀
 // })
 // .catch(err => console.error(err))
 
+///////////////////////////////////////
+// Consuming Promises with Async/Await
+// Error Handling With try...catch
 
-const whereAmI = async function(country) {
-  const res = await fetch(`https://restcountries.com/v2/name/${country}`);
-  const data = await res.json()
-  console.log(data);
-  renderCountry(data[0]);
-}
-whereAmI('portugal')
-console.log('FIRST');
+// const getPosition = function () {
+//   return new Promise(function (resolve, reject) {
+//     navigator.geolocation.getCurrentPosition(resolve, reject);
+//   });
+// };
 
+// // fetch(`https://restcountries.eu/rest/v2/name/${country}`).then(res => console.log(res))
+
+// const whereAmI = async function () {
+//   try {
+//     // Geolocation
+//     const pos = await getPosition();
+//     const { latitude: lat, longitude: lng } = pos.coords;
+
+//     // Reverse geocoding
+//     const resGeo = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+//     if (!resGeo.ok) throw new Error('Problem getting location data');
+
+//     const dataGeo = await resGeo.json();
+//     console.log(dataGeo);
+
+//     // Country data
+//     const res = await fetch(
+//       `https://restcountries.com/v2/name/${dataGeo.country}`
+//     );
+
+//     const data = await res.json();
+//     console.log(data);
+//     renderCountry(data[0]);
+//   } catch (err) {
+//     console.error(`${err} 💥`);
+//     renderError(`💥 ${err.message}`);
+//   }
+// };
+// whereAmI();
+// console.log('FIRST');
+
+// try {
+//   let y = 1;
+//   const x = 2;
+//   y = 3;
+// } catch (err) {
+//   alert(err.message);
+// }
