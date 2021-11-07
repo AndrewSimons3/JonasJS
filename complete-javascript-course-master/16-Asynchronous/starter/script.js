@@ -448,46 +448,46 @@ GOOD LUCK 😀
 // Consuming Promises with Async/Await
 // Error Handling With try...catch
 
-const getPosition = function () {
-  return new Promise(function (resolve, reject) {
-    navigator.geolocation.getCurrentPosition(resolve, reject);
-  });
-};
+// const getPosition = function () {
+//   return new Promise(function (resolve, reject) {
+//     navigator.geolocation.getCurrentPosition(resolve, reject);
+//   });
+// };
 
-// fetch(`https://restcountries.eu/rest/v2/name/${country}`).then(res => console.log(res))
+// // fetch(`https://restcountries.eu/rest/v2/name/${country}`).then(res => console.log(res))
 
-const whereAmI = async function () {
-  try {
-    // Geolocation
-    const pos = await getPosition();
-    const { latitude: lat, longitude: lng } = pos.coords;
+// const whereAmI = async function () {
+//   try {
+//     // Geolocation
+//     const pos = await getPosition();
+//     const { latitude: lat, longitude: lng } = pos.coords;
 
-    // Reverse geocoding
-    const resGeo = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
-    if (!resGeo.ok) throw new Error('Problem getting location data');
+//     // Reverse geocoding
+//     const resGeo = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+//     if (!resGeo.ok) throw new Error('Problem getting location data');
 
-    const dataGeo = await resGeo.json();
-    // console.log(dataGeo);
+//     const dataGeo = await resGeo.json();
+//     // console.log(dataGeo);
 
-    // Country data
-    const res = await fetch(
-      `https://restcountries.com/v2/name/${dataGeo.country}`
-    );
+//     // Country data
+//     const res = await fetch(
+//       `https://restcountries.com/v2/name/${dataGeo.country}`
+//     );
 
-    if (!resGeo.ok) throw new Error('Problem getting country');
-    const data = await res.json();
-    console.log(data);
-    renderCountry(data[0]);
+//     if (!resGeo.ok) throw new Error('Problem getting country');
+//     const data = await res.json();
+//     console.log(data);
+//     renderCountry(data[0]);
 
-    return `You are in ${dataGeo.city}, ${dataGeo.country}`;
-  } catch (err) {
-    console.error(`${err} 💥`);
-    renderError(`💥 ${err.message}`);
+//     return `You are in ${dataGeo.city}, ${dataGeo.country}`;
+//   } catch (err) {
+//     console.error(`${err} 💥`);
+//     renderError(`💥 ${err.message}`);
 
-    // Reject promise returned from async function
-    throw err;
-  }
-};
+//     // Reject promise returned from async function
+//     throw err;
+//   }
+// };
 
 // console.log('1: Will get location');
 // const city = whereAmI();
@@ -521,54 +521,160 @@ const whereAmI = async function () {
 // };
 // get3Countries('portugal', 'canada', 'tanzania');
 
+// // Promise.race
+// (async function() {
+//   const res = await Promise.race([
+//     getJSON(`https://restcountries.com/v2/name/italy`),
+//     getJSON(`https://restcountries.com/v2/name/egypt`),
+//     getJSON(`https://restcountries.com/v2/name/mexico`),
+//   ]);
+//   console.log(res[0]);
+// })();
+
+// const timeout = function(sec) {
+//   return new Promise(function(_, reject) {
+//     setTimeout(function() {
+//       reject(new Error('request took too long!'));
+//     }, sec);
+//   });
+// };
+
+// Promise.race([
+//   getJSON(`https://restcountries.com/v2/name/tanzania`),
+//   timeout(1)
+// ])
+//   .then(res => console.log(res[0]))
+//   .catch(err => console.log(err));
+
+// // Promise.allSettled
+// Promise.allSettled([
+//   Promise.resolve('Success'),
+//   Promise.reject('Error'),
+//   Promise.resolve('Success'),
+
+// ]).then(res => console.log(res));
+
+// Promise.all([
+//   Promise.resolve('Success'),
+//   Promise.reject('Error'),
+//   Promise.resolve('Success'),
+
+// ]).then(res => console.log(res))
+// .catch(err => console.log(err));
+
+// // Promise.any [ES2021]
+// Promise.any([
+//   Promise.resolve('Success'),
+//   Promise.reject('Error'),
+//   Promise.resolve('Another Success'),
+
+// ]).then(res => console.log(res))
+// .catch(err => console.log(err));
+
+///////////////////////////////////////
+// Coding Challenge #3
+
+/* 
+PART 1
+Write an async function 'loadNPause' that recreates Coding Challenge #2, this time using 
+async/await (only the part where the promise is consumed). Compare the two versions, think 
+about the big differences, and see which one you like more.
+
+Don't forget to test the error handler, and to set the network speed to 'Fast 3G' in the dev 
+tools Network tab.
 
 
-// Promise.race
-(async function() {
-  const res = await Promise.race([
-    getJSON(`https://restcountries.com/v2/name/italy`),
-    getJSON(`https://restcountries.com/v2/name/egypt`),
-    getJSON(`https://restcountries.com/v2/name/mexico`),
-  ]);
-  console.log(res[0]);
-})();
 
-const timeout = function(sec) {
-  return new Promise(function(_, reject) {
-    setTimeout(function() {
-      reject(new Error('request took too long!'));
-    }, sec);
+GOOD LUCK 😀
+*/
+
+const wait = function (seconds) {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, seconds * 1000);
   });
 };
 
-Promise.race([
-  getJSON(`https://restcountries.com/v2/name/tanzania`),
-  timeout(1)
-])
-  .then(res => console.log(res[0]))
-  .catch(err => console.log(err));
+const imgContainer = document.querySelector('.images');
 
-// Promise.allSettled
-Promise.allSettled([
-  Promise.resolve('Success'),
-  Promise.reject('Error'),
-  Promise.resolve('Success'),
+const createImage = function (imgPath) {
+  return new Promise(function (resolve, reject) {
+    const img = document.createElement('img');
+    img.src = imgPath;
 
-]).then(res => console.log(res));
+    img.addEventListener('load', function () {
+      imgContainer.append(img);
+      resolve(img);
+    });
 
-Promise.all([
-  Promise.resolve('Success'),
-  Promise.reject('Error'),
-  Promise.resolve('Success'),
+    img.addEventListener('error', function () {
+      reject(new Error('Image not found'));
+    });
+  });
+};
 
-]).then(res => console.log(res))
-.catch(err => console.log(err));
+const loadNPause = async function () {
+  try {
+    // Load image 1
+    let img = await createImage('img/img-1.jpg');
+    console.log('Image 1 loaded');
+    await wait(2);
+    img.style.display = 'none';
 
-// Promise.any [ES2021]
-Promise.any([
-  Promise.resolve('Success'),
-  Promise.reject('Error'),
-  Promise.resolve('Another Success'),
+    // Load image 2
+    img = await createImage('img/img-2.jpg');
+    console.log('Image 2 loaded');
+    await wait(2);
+    img.style.display = 'none';
+  } catch (err) {
+    console.error(err);
+  }
+};
+loadNPause();
 
-]).then(res => console.log(res))
-.catch(err => console.log(err));
+// PART 2
+// 1. Create an async function 'loadAll' that receives an array of image paths 'imgArr';
+// 2. Use .map to loop over the array, to load all the images with the 'createImage' function
+// (call the resulting array 'imgs')
+
+// 3. Check out the 'imgs' array in the console! Is it like you expected?
+
+// 4. Use a promise combinator function to actually get the images from the array 😉
+
+// 5. Add the 'paralell' class to all the images (it has some CSS styles).
+
+// TEST DATA: ['img/img-1.jpg', 'img/img-2.jpg', 'img/img-3.jpg']. To test, turn off the
+// 'loadNPause' function.
+
+const loadAll = async function (imgArr) {
+  try {
+    const imgs = imgArr.map(async img => await createImage(img));
+    const imgsEl = await Promise.all(imgs);
+    console.log(imgsEl);
+    imgsEl.forEach(img => img.classList.add('parallel'));
+  } catch (err) {
+    console.log(err);
+  }
+};
+loadAll(['img/img-1.jpg', 'img/img-2.jpg', 'img/img-3.jpg']);
+
+// let currentImg;
+
+// createImage('img/img-1.jpg')
+//   .then(img => {
+//   currentImg = img;
+//   console.log('Image 1 loaded');
+//   return wait(2)
+// })
+// .then(() => {
+//   currentImg.style.display = 'none';
+//   return createImage('img/img-2.jpg');
+// })
+// .then(img => {
+//   currentImg = img;
+//   console.log('Image 2 loaded');
+//   return wait(2);
+// })
+// .then(() => {
+//   currentImg.style.display = 'none';
+// })
+// .catch(err => console.error(err))
